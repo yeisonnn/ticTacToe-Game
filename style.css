@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+/* font-family: 'Syne Mono', monospace; */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #181818;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  font-size: 1.6rem;
+}
+
+.game-container {
+  border: 1px solid #fff;
+  min-width: 500px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: #f87171; */
+}
+.players {
+}
+.game {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(min-content, 120px));
+  grid-template-rows: repeat(3, minmax(min-content, 120px));
+  font-size: 8rem;
+}
+
+.game div {
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.controls {
+}
