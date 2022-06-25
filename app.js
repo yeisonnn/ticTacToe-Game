@@ -11,8 +11,11 @@ const scoreP2 = document.querySelector('.score-p2');
 const currentPlayer = document.querySelector('.current-player');
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
+// these are initial conditions for the game. gameState board will hold inner text for each square when a player clicks while gameHtmlElements board has the HTML elements in their corresponding position.
+// winningset will hold the three consecutive HTML elements when a player wins.
+// score contains player 1 points and player 2 points respectively.
+
 const gameState = {
   players: ['X', 'O'],
   board: [
@@ -36,8 +39,9 @@ let initialPlayer = gameState.players[1];
 updatePlayer(initialPlayer);
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
+// this function updates the marking for each player. When a player clicks it checks if there is a winner and then updates the DOM.
+
 function UpdatingAndCheckingGame(e) {
   if (
     initialPlayer === gameState.players[1] &&
@@ -68,22 +72,22 @@ function UpdatingAndCheckingGame(e) {
   }
 }
 
+// every click triggers call UpdatingAndCheckingGame function
 board.addEventListener('click', (e) => {
   const event = e;
   UpdatingAndCheckingGame(event);
 });
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+// retart the game but keeping the score
 btnRestart.addEventListener('click', () => {
   resetConditions();
 });
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
+//reset the game and the score
 btnStart.addEventListener('click', () => {
   resetConditions();
   gameState.score = [0, 0];
@@ -92,8 +96,8 @@ btnStart.addEventListener('click', () => {
 });
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
+// reset to the initial condition of the game.
 function resetConditions() {
   for (let element of spaces) {
     element.innerText = '';
@@ -108,8 +112,8 @@ function resetConditions() {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
+// it decides what player wins and then updates the image of the winner for use in a message.
 function choosingTheWinner(winnerArr) {
   let winnerPlayer = 'player1';
   if (winnerArr[0].textContent === 'O') {
@@ -122,9 +126,8 @@ function choosingTheWinner(winnerArr) {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+//it updates the score when a player wins.
 function updateCounter(winnerArr) {
   let counter = 1;
   if (winnerArr[0].textContent === 'X') {
@@ -138,17 +141,12 @@ function updateCounter(winnerArr) {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+// it updates the images at the bottom of the game depending on player's turn.
 function updatePlayer(player) {
   let playerAvatar = 'player2';
-  // if (player === 'O') {
-  //   console.log('el jugador es X');
-  // }
   if (player === 'X') {
     playerAvatar = 'player1';
-    console.log('el jugador es O');
   }
   const html = ` <p>Play:</p>
   <img src="./images/avatar-${playerAvatar}.svg" class="current-avatar" />`;
@@ -156,9 +154,8 @@ function updatePlayer(player) {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-// function top convert div element into board game
+// converts HTML elements into board game array.  one board holds HTML elements text while other holds only the html elements in order to manipulate the DOM and use classes.
 
 function convertElementsIntoBoardArray(arrayHtmlElements) {
   const boardOfHtmlInnerText = [];
@@ -176,9 +173,8 @@ function convertElementsIntoBoardArray(arrayHtmlElements) {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+// It will create a board array that is filled with null values with specific rows and columns.
 function createBoard(rows, cols) {
   const board = [];
   const column = new Array(cols);
@@ -191,32 +187,27 @@ function createBoard(rows, cols) {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+// returns an array with the row for an specific index
 function getRow(gameState, rowIndex) {
   const searchedRow = gameState.board[rowIndex];
-  // console.log(searchedRow);
   return searchedRow;
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+// returns an array with column for an specific index
 function getColumn(gameState, columnIndex) {
   const searchedColumn = [];
   for (let column of gameState.board) {
     searchedColumn.push(column[columnIndex]);
   }
-  // console.log(searchedColumn);
   return searchedColumn;
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+// returns an array with the diagonal from top left to right bottom
 function getDiagonalLeftToRight(objState) {
   const diagonalLeftToRight = [];
   let count = 0;
@@ -229,9 +220,8 @@ function getDiagonalLeftToRight(objState) {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+// returns an array with the diagonal from top right to left bottom
 function getDiagonalRightToLeft(objState) {
   const getDiagonalRightToLeft = [];
   let count = 2;
@@ -243,9 +233,8 @@ function getDiagonalRightToLeft(objState) {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+// returns true if all characters in an array are equal. if all are equal that means a player wins
 function allCharacterAreEqual(gameArray) {
   if (gameArray.includes('')) {
     return;
@@ -258,12 +247,10 @@ function allCharacterAreEqual(gameArray) {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
 
 // Validating Functions
-
-// checking all the rows and Columns
+// checking all the Rows and Columns to see if all their marks are equal. if happens it updates the winnerSet array with the winning HTML elements.
 function checkAllRowsAndColumns(objState) {
   for (let i = 0; i < objState.board.length; i++) {
     const eachRow = getRow(objState, i);
@@ -275,13 +262,11 @@ function checkAllRowsAndColumns(objState) {
     const checkEachColumn = allCharacterAreEqual(eachColumn);
 
     if (checkEachRow) {
-      // console.log('gameOver row');
       gameState.winningSet = eachRowHtml;
       return true;
     }
 
     if (checkEachColumn) {
-      // console.log('gameOver column');
       gameState.winningSet = eachColumnHmtl;
       return true;
     }
@@ -290,9 +275,8 @@ function checkAllRowsAndColumns(objState) {
 }
 
 /*========================================================
-----------------------------------------------------------
 =========================================================*/
-
+// checking the two diagonal to see if all their marks are equal. if happens it updates the winnerSet array with the winning HTML elements.
 function checkAllDiagonals() {
   const topLeft = getDiagonalLeftToRight(gameState);
   const topLeftHtml = getDiagonalLeftToRight(gameHtmlElements);
