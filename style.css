@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
-/* font-family: 'Syne Mono', monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -11,28 +11,141 @@ html {
 }
 
 body {
-  background-color: #181818;
+  background-image: linear-gradient(to right, #141e30, #243b55);
   color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
   font-size: 1.6rem;
+  letter-spacing: 1.3px;
+  font-family: 'Patrick Hand SC', cursive;
 }
 
+.root {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 1fr 50rem 1fr;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.tic {
+  font-size: 8rem;
+
+  background-image: linear-gradient(to right, #0099f7, #f11712);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: 'Monoton', cursive;
+}
+
+.toe {
+  font-size: 13rem;
+  font-family: 'Monoton', cursive;
+  background-image: linear-gradient(
+    to right,
+    rgb(242, 112, 156),
+    rgb(255, 148, 114)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Game container */
 .game-container {
+  position: relative;
   border: 1px solid #fff;
-  min-width: 500px;
-  min-height: 500px;
+  min-width: 50rem;
+  min-height: 50rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* background-color: #f87171; */
+  background-color: hsl(0, 0%, 15%);
+  box-shadow: 0px 2px 2px 2px hsl(0, 0%, 40%), 0px 4px 4px 4px hsl(0, 0%, 80%);
 }
+
+/* -------------------------------------------------------------------------------- */
+/* these modals will appears when one player wins */
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(24, 24, 24, 0.3);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.round-winner {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-shadow: 2px 2px 2px #111;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* players - top of the container */
 .players {
+  color: inherit;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* border: 1px solid tomato; */
+  width: 85%;
+  margin-top: 1.4rem;
+  justify-items: center;
 }
+
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.player--name {
+  font-size: 2.3rem;
+  border-bottom: 1px solid #fff;
+}
+
+.player--avatar {
+  width: 5rem;
+  height: 5rem;
+}
+
+.avatar {
+  display: block;
+  width: 100%;
+}
+
+.avatar-winner {
+  width: 60px;
+  height: 60px;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+/* this is ther grid of the game */
 .game {
   display: grid;
   grid-template-columns: repeat(3, minmax(min-content, 120px));
@@ -46,5 +159,156 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .controls {
+  color: inherit;
+}
+
+.controls p {
+  font-size: 2.4rem;
+}
+
+/* class when a player wins. it will color winner line */
+.winner {
+  color: brown;
+  font-size: 8.3rem;
+  background-color: hsl(0, 0%, 25%);
+}
+
+/* control - botttom of the game container */
+.controls {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+.btn-3d-1 {
+  position: relative;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 1.8rem;
+  outline: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn-3d-1:active {
+  top: 3px;
+  left: -3px;
+}
+
+.btn-3d-1::before {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 0;
+  width: 0;
+  border: solid 6px transparent;
+  border-left-width: 0;
+  background: none;
+  top: 0;
+  left: -6px;
+}
+
+.btn-3d-1::after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 0;
+  width: 0;
+  border: solid 6px transparent;
+  border-bottom-width: 0;
+  right: 0;
+  bottom: -6px;
+}
+
+.btn-3d-1:active::before {
+  border: solid 3px transparent;
+  border-left-width: 0;
+  left: -3px;
+}
+
+.btn-3d-1:active::after {
+  border: solid 3px transparent;
+  border-bottom-width: 0;
+  bottom: -3px;
+}
+
+/* ------------------------- */
+.btn-restart {
+  background: orangered;
+  box-shadow: -6px 6px 0px hsl(16, 100%, 30%);
+}
+
+.btn-restart:hover {
+  background: hsl(16, 100%, 45%);
+}
+
+.btn-restart:active {
+  background: hsl(16, 100%, 40%);
+  box-shadow: -3px 3px 0px hsl(16, 100%, 30%);
+}
+
+.btn-restart::before {
+  border-right: solid 6px hsl(16, 100%, 30%);
+}
+
+.btn-restart::after {
+  border-top: 6px solid hsl(16, 100%, 30%);
+}
+
+.btn-restart:active::before {
+  border-right: solid 3px hsl(16, 100%, 30%);
+}
+
+.btn-restart:active::after {
+  border-top: solid 3px hsl(16, 100%, 30%);
+  bottom: -3px;
+}
+
+/* ----------------------------------- */
+.btn-start {
+  background: hsl(150, 76%, 50%);
+  box-shadow: -6px 6px 0px hsl(150, 76%, 30%);
+  color: #111;
+}
+
+.btn-start:hover {
+  background: hsl(150, 76%, 45%);
+}
+
+.btn-start:active {
+  background: hsl(150, 76%, 40%);
+  box-shadow: -3px 3px 0px hsl(150, 76%, 30%);
+}
+
+.btn-start::before {
+  border-right: solid 6px hsl(150, 76%, 30%);
+}
+
+.btn-start::after {
+  border-top: 6px solid hsl(150, 76%, 30%);
+}
+
+.btn-start:active::before {
+  border-right: solid 3px hsl(150, 76%, 30%);
+}
+
+.btn-start:active::after {
+  border-top: solid 3px hsl(150, 76%, 30%);
+  bottom: -3px;
+}
+
+/* ---------------------------------- */
+.current-player {
+  display: flex;
+}
+
+.current-avatar {
+  width: 40px;
+  height: 40px;
 }

@@ -10,8 +10,40 @@
   </head>
   <body>
     <div class="root">
+      <div class="tic">
+        <p>ticTAC</p>
+      </div>
       <div class="game-container">
-        <div class="players">players</div>
+        <div class="modal hidden"></div>
+        <p class="round-winner hidden">
+          <!-- <img src="./images/avatar-player1.svg" class="avatar-winner" />
+          <span>Won this Round</span> -->
+        </p>
+        <div class="players">
+          <div class="player player--1">
+            <p class="player--name">player 1</p>
+            <div class="player--avatar">
+              <img
+                class="avatar"
+                src="./images/avatar-player1.svg"
+                alt="player1 avatar"
+              />
+            </div>
+          </div>
+          <div class="score">
+            <span class="score-p1">0</span>:<span class="score-p2">0</span>
+          </div>
+          <div class="player player--2">
+            <p class="player--name">player 2</p>
+            <div class="player--avatar">
+              <img
+                class="avatar"
+                src="./images/avatar-player2.svg"
+                alt="player2 avatar"
+              />
+            </div>
+          </div>
+        </div>
         <div class="game">
           <div class="eachSpace"></div>
           <div class="eachSpace"></div>
@@ -23,7 +55,17 @@
           <div class="eachSpace"></div>
           <div class="eachSpace"></div>
         </div>
-        <div class="controls">controls</div>
+        <div class="controls">
+          <div class="current-player">
+            <!-- <p>current</p>
+            <img src="./images/avatar-player1.svg" class="current-avatar" /> -->
+          </div>
+          <button class="btn-3d-1 btn-restart">Play Again</button>
+          <button class="btn-3d-1 btn-start">Reset Game</button>
+        </div>
+      </div>
+      <div class="toe">
+        <p>toe</p>
       </div>
     </div>
   </body>
