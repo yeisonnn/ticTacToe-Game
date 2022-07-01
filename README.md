@@ -16,3 +16,5 @@ How it looks in your browser.
 _This game was made from scratch for_ **Yeisson Giraldo**.
 
 Feel free to download it, modified and add new functionalities.
+
+[play here](https://yeisonnn-tic-tac-toe.netlify.app/)
